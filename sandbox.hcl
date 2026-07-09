@@ -38,21 +38,7 @@ resource "aws_account" "hiddenlayer_aws" {
   services = ["s3"]
 
   user "student" {
-    iam_policy = jsonencode({
-      Version = "2012-10-17"
-      Statement = [
-        {
-          Effect = "Allow"
-          Action = [
-            "s3:GetObject",
-            "s3:ListBucket",
-            "s3:CreateBucket",
-            "s3:PutObject"
-          ]
-          Resource = "*"
-        }
-      ]
-    })
+    managed_policies = ["arn:aws:iam::aws:policy/AmazonS3FullAccess"]
   }
 }
 
